@@ -123,6 +123,9 @@
 .tf-ion-android-cart:before {
   content: url("104icon1.png");
 }
+.tf-ion-GHicon::before{
+  content: url("GHicon.png");
+}
 .tf-ion-android-chat:before {
   content: "\f2d4";
 }

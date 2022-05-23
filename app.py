@@ -82,9 +82,6 @@ def analysis():
 def contact():
     return render_template('contact.html')
 
-@app.route('/coffee')
-def indexCoffee():
-    return render_template('indexCoffee.html')
 
 if __name__ == "__main__":
     app.run(ssl_context='adhoc',host='0.0.0.0',debug=True, port='7777')
