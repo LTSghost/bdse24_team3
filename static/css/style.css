@@ -1373,6 +1373,20 @@ h3.quote::before {
 #Cright{
     padding-left: 50px;
 }
+#indexfoot{
+    background-color: #e6a756;
+}
+
+.wrapper{
+    margin: 10% auto;
+    width: 600px;
+}
+
+.img-interestRate{
+    width: 600px;
+    height: 400px;
+}
+
 
 /*=== MEDIA QUERY ===*/
 @media (max-width: 1000px) {
@@ -1415,6 +1429,13 @@ h3.quote::before {
     }
 }
 
+@media (max-width:750px){
+    .lottie-player{
+        width: 300px;
+        height: 300px;
+    }
+}
+
 @media (max-width: 400px) {
     .header-top .header-top-info a {
         margin-left: 0px;
@@ -1431,7 +1452,7 @@ h3.quote::before {
     }
 
     .slider {
-        padding: 126px 0 151px 0;
+        /* padding: 126px 0 151px 0; */
     }
 
     .content-title {
@@ -1507,7 +1528,7 @@ h3.quote::before {
     }
 
     .slider {
-        padding: 25% 0 100% 0;
+        /* padding: 25% 0 100% 0; */
         background-position:15%;
     }
 
@@ -1526,7 +1547,7 @@ h3.quote::before {
 
     h2,
     .h2 {
-        font-size: 1.3rem;
+        /* font-size: 1.3rem; */
         font-weight: 600;
         line-height: 36px;
     }
@@ -1569,7 +1590,20 @@ h3.quote::before {
     } */
 
 }
-
+@media (max-width=410){
+    #text1 {
+        display: block;
+        font-size: 2.5rem;
+        font-weight: 400;
+    }
+    }
+@media (max-width=400){
+#text1 {
+    display: block;
+    font-size: 2rem;
+    font-weight: 400;
+}
+}
 
 
 /*# sourceMappingURL=maps/style.css.map */

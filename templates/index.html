@@ -27,7 +27,7 @@
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="{{ url_for( 'static',filename='css/style.css') }}">
-    <link rel="stylesheet" href="/static/coffee/css/style2.css">
+    <!-- <link rel="stylesheet" href="/static/coffee/css/style2.css"> -->
     <link rel="stylesheet" href="/static/coffee/css/style.css">
     {% endblock styles%}
 
@@ -68,8 +68,6 @@
                         </li>
 
                     </ul>
-
-
                 </div>
             </div>
         </nav>
@@ -97,29 +95,34 @@
                         </div>
                     </div>
                 </div>
+                <a href="#module">
+                    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_oi1gtsw5.json"
+                        background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay>
+                    </lottie-player>
+                </a>
             </div>
         </section>
     </div>
 
-    <div style="background: url('/static/images/bg/darkforest.jpg') fixed 50% 50%;background-size:cover">
+    <div id="module" style="background: url('/static/images/bg/darkforest.jpg') fixed 50% 50%;background-size:cover">
         <div style="padding:40px ">
             <section class="page-section-cof clearfix-cof">
                 <div class="container-cof">
                     <div class="intro-cof">
                         <img class="intro-cof-img-cof img-fluid-cof mb-3-cof mb-lg-0-cof rounded-cof"
-                            src="/static/images/bg/animation_640.gif"
-                            alt="...">
+                            src="/static/images/bg/animation_640.gif" alt="...">
 
                         <div class="intro-cof-text-cof left-0 text-center-cof bg-faded-cof p-5-cof rounded-cof">
                             <h2 class="section-heading-cof mb-4-cof">
-                                <span class="section-heading-upper-cof">Fresh Coffee</span>
-                                <span class="section-heading-lower-cof">Worth Drinking</span>
+                                <span class="section-heading-upper-cof">模型分析</span>
+                                <!-- <span id="text1" class="section-heading-lower-cof" >動態地圖</span> -->
+                                <span id="text1" class="" >動態地圖</span>
                             </h2>
-                            <p class="mb-3-cof">Every cup of our quality artisan coffee starts with locally sourced,
-                                hand picked ingredients. Once you try it, our coffee will be a blissful addition to your
-                                everyday morning routine - we guarantee it!</p>
+                            <p class="mb-3-cof">經由多方的模型訓練，預測出的分析結果，地區性均價、總價... <br>
+                                有我們的超級模型，就沒在跟你怕!
+                            </p>
                             <div class="intro-cof-button-cof mx-auto-cof"><a class="btn-cof btn-cof-primary btn-cof-xl"
-                                    href="module">Go To Module</a></div>
+                                    href="module">Go To Module Map</a></div>
                         </div>
                     </div>
                 </div>
@@ -131,16 +134,16 @@
                 <div class="container-cof">
                     <div class="intro-cof">
                         <img class="intro-cof-img-cof img-fluid-cof mb-3-cof mb-lg-0-cof rounded-cof"
-                            src="/static/images/bg/analysis_640.gif"
-                            alt="...">
+                            src="/static/images/bg/analysis_640.gif" alt="...">
                         <div class="intro-cof-text-cof left-0 text-center-cof bg-faded-cof p-5-cof rounded-cof">
                             <h2 class="section-heading-cof mb-4-cof">
-                                <span class="section-heading-upper-cof">Fresh Coffee</span>
-                                <span class="section-heading-lower-cof">Worth Drinking</span>
+                                <span class="section-heading-upper-cof">資料分析</span>
+                                <!-- <span id="text1" class="section-heading-lower-cof" >數據圖表</span> -->
+                                <span id="text1" class="" >數據圖表</span>
                             </h2>
-                            <p class="mb-3-cof">Every cup of our quality artisan coffee starts with locally sourced,
-                                hand picked ingredients. Once you try it, our coffee will be a blissful addition to your
-                                everyday morning routine - we guarantee it!</p>
+                            <p class="mb-3-cof">穿梭於數據之間的特性，比對市場、總體經濟<br>
+                                挖掘出數據之間的隱藏秘密!
+                            </p>
                             <div class="intro-cof-button-cof mx-auto-cof"><a class="btn-cof btn-cof-primary btn-cof-xl"
                                     href="analysis">Let's Analysis</a></div>
                         </div>
@@ -159,7 +162,7 @@
 
     {% block footer %}
 
-    <footer class="footer fotsec">
+    <footer class="footer fotsec" id="indexfoot">
         <div class="container">
             <div class="row1">
 
