@@ -15,6 +15,11 @@
                 <p>HousePrice, Floor...</p>
 
                 <form method="post" action="/module" class="sub-form">
+
+                    <select name="year" class="form-control mb-3" aria-label="Default select example">
+                        <option value="2021" >2021</option>
+                    </select>
+
                     <select name=district class="form-control mb-3" aria-label="Default select example">
                         {% for col in district %}
                         {% if col['id'] == 1 %}
@@ -56,6 +61,10 @@
 
     RRR = {{ RRR }}
     
+    var latlngs = [[51.505,-0.09],[52,-1],[51,-0.05],[51.3,-0.06]]
+    var polygon = L.polygon(latlngs, {color: '#000eff',fillColor:'#0000ed',
+                    weight:1}).addTo(map);
+
     if (RRR == 1) {
         L.marker([25.047058, 121.519752])
             .addTo(map)

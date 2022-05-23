@@ -134,6 +134,7 @@ input[type="tel"]:focus {
     background: #f75757;
     color: #fff;
     transition: all 0.2s ease;
+    border-radius:5px;
 }
 
 .btn-main:hover,
@@ -1558,6 +1559,14 @@ h3.quote::before {
         width: 100%;
         text-align: center;
     }
+    /* .row1{
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    } */
 
 }
 
