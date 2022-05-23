@@ -1,0 +1,90 @@
+import os
+import sqlalchemy as db
+from dotenv import load_dotenv
+from flask import Flask, render_template, request, redirect, url_for, session, json, jsonify
+from datetime import datetime
+
+app = Flask(__name__)
+
+load_dotenv() # 讀取 .env 檔案的資料
+
+# 連線 MYSQL
+username = os.environ.get("MYSQL_USERNAME")  # 資料庫帳號
+password = os.environ.get("MYSQL_PASSWORD")  # 資料庫密碼
+host = os.environ.get("MYSQL_DB_ADDRESS")    # 資料庫位址
+port = os.environ.get("MYSQL_PORT")  # 資料庫埠號
+database = os.environ.get("MYSQL_DB")   # 資料庫名稱
+
+# print(username,password,host,port,database)
+
+# 建立資料庫引擎
+engine = db.create_engine(
+    f'mysql+pymysql://{username}:{password}@{host}:{port}/{database}')
+
+
+@app.route('/')
+@app.route('/home')
+def index():
+    return render_template('index.html',
+                           current_time=datetime.utcnow())
+
+@app.route('/module', methods=['GET','POST'])
+def module():
+    # if request.method == "GET":
+    connection = engine.connect()
+
+    cursor = connection.execute("select id,district from district_info;")
+    result_district = cursor.fetchall()
+
+    # cursor = connection.execute("select DISTINCT Htype from final;")
+    # result_htype = cursor.fetchall()
+
+    connection.close()
+    if request.method == "GET":
+        RRR = 1
+        return render_template('module.html',
+                                district=result_district,
+                                # htype=result_htype,
+                                RRR = RRR,
+                                tmpAll = 0
+                                )
+    elif request.method == "POST":
+        RRR = 2
+
+        select_district = request.form['district']
+
+        connection = engine.connect()
+
+        cursor = connection.execute(
+            f"select latitude,longitude,address,total_price from final2 where district_id = '{select_district}';"
+            )
+        getAll = cursor.fetchall()
+
+        connection.close()
+    
+        tmpAll = list(map(list,getAll))
+
+        # tmplen = len(tmpAll)
+
+        return render_template('module.html',
+                                district=result_district,
+                                # htype=result_htype,
+                                RRR = RRR,
+                                # tmplen = tmplen,
+                                tmpAll = json.dumps(tmpAll)
+        )
+
+@app.route('/analysis')
+def analysis():
+    return render_template('analysis.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/coffee')
+def indexCoffee():
+    return render_template('indexCoffee.html')
+
+if __name__ == "__main__":
+    app.run(ssl_context='adhoc',host='0.0.0.0',debug=True, port='7777')

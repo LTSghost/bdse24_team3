@@ -1,0 +1,92 @@
+{% extends "/index.html" %}
+
+{% block head %}
+{{ super() }}
+{% include 'parts/_leaflet.html' %}
+{% endblock head %}
+
+{% block main_wrapper %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="widget">
+                <h4 class="text-capitalize mb-4">Choose variable</h4>
+                <p>HousePrice, Floor...</p>
+
+                <form method="post" action="/module" class="sub-form">
+                    <select name=district class="form-control mb-3" aria-label="Default select example">
+                        {% for col in district %}
+                        {% if col['id'] == 1 %}
+                        <option value="{{col['id']}}" selected>{{col['district']}}</option>
+                        {% else %}
+                        <option value="{{col['id']}}">{{col['district']}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                    <!-- <input type="text" class="form-control mb-3" placeholder="Subscribe Now ..."> -->
+
+                    <br>
+                    <button type="submit" class="btn btn-main btn-small">Submit</button>
+                    <!-- <a href="#" class="btn btn-main btn-small">Commit</a> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="map"></div>
+
+{% endblock main_wrapper %}
+
+{% block scripts %}
+{{ super() }}
+
+<script type="text/javascript">
+    
+    var map = L.map('map', {
+        center: [25.029764687428475, 121.6012807284144],
+        zoom: 9.5
+    });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var markers = new L.MarkerClusterGroup().addTo(map);
+
+    RRR = {{ RRR }}
+    
+    if (RRR == 1) {
+        L.marker([25.047058, 121.519752])
+            .addTo(map)
+            .bindPopup("I'm here")
+    }
+    else {
+
+        var tmpALL = {{ tmpAll| tojson }};
+
+        tmpALL = JSON.parse(tmpALL);
+
+        /*for (let i = 0; i < tmpALL.length; i++) {
+
+            var tmpMark = [tmpALL[i][0], tmpALL[i][1]]
+
+            L.marker(tmpMark)
+                .addTo(map)
+                .bindPopup(tmpALL[i][2] + " <br> " + tmpALL[i][3])
+            //.openPopup();
+        }*/
+
+        for (let i = 0; i < tmpALL.length; i++) {
+
+            var tmpMark = [tmpALL[i][0], tmpALL[i][1]]
+
+            markers.addLayer(L.marker(tmpMark)
+            .bindPopup("地址 : " + tmpALL[i][2] + " <br> " + "總價 : " + tmpALL[i][3] + "萬")
+            )
+        }
+
+    }
+</script>
+
+{% endblock scripts %}
