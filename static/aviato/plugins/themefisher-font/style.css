@@ -126,6 +126,9 @@
 .tf-ion-GHicon::before{
   content: url("GHicon.png");
 }
+.tf-ion-gmail::before{
+    content: url("Gmailicon.png");
+}
 .tf-ion-android-chat:before {
   content: "\f2d4";
 }

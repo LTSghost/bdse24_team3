@@ -1150,6 +1150,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   font-size: 20px;
   transition: .2s all;
   width: 50px;
+  border-radius: 5px;
 }
 
 .product-item .product-thumb .preview-meta li a:hover, .product-item .product-thumb .preview-meta li span:hover {
