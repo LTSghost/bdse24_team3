@@ -78,6 +78,10 @@ def module():
 def analysis():
     return render_template('analysis.html')
 
+@app.route('/analysis_history')
+def analysis_history():
+    return render_template('analysis_history.html')
+
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
