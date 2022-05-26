@@ -1692,6 +1692,9 @@ h3.quote::before {
 
     } */
 }
+#select2{
+    display: none;
+}
 
 @media (max-width:580px) {
     .img-interestRate {

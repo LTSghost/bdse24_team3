@@ -46,33 +46,46 @@ def module():
                                 district=result_district,
                                 # htype=result_htype,
                                 RRR = RRR,
+                                modinit = 0,
                                 tmpAll = 0
                                 )
     elif request.method == "POST":
         RRR = 2
 
-        select_district = request.form['district']
+        select_mod = request.form['mod']
 
-        connection = engine.connect()
 
-        cursor = connection.execute(
-            f"select latitude,longitude,address,total_price from final2 where district_id = '{select_district}';"
+        if select_mod == "0":
+            return render_template('module.html', modinit = 0, RRR = 1, district=result_district, tmpAll = 0)
+
+        elif select_mod == "1":
+            return render_template('module.html', modinit = 1, RRR = 1, district=result_district, tmpAll = 0)
+
+        elif select_mod == "2":
+
+            select_district = request.form['district']
+            
+            connection = engine.connect()
+
+            cursor = connection.execute(
+                f"select latitude,longitude,address,total_price from final2 where district_id = '{select_district}';"
+                )
+            getAll = cursor.fetchall()
+
+            connection.close()
+
+            tmpAll = list(map(list,getAll))
+
+            # tmplen = len(tmpAll)
+
+            return render_template('module.html',
+                                    district=result_district,
+                                    # htype=result_htype,
+                                    RRR = RRR,
+                                    # tmplen = tmplen,
+                                    tmpAll = json.dumps(tmpAll),
+                                    modinit = 2
             )
-        getAll = cursor.fetchall()
-
-        connection.close()
-    
-        tmpAll = list(map(list,getAll))
-
-        # tmplen = len(tmpAll)
-
-        return render_template('module.html',
-                                district=result_district,
-                                # htype=result_htype,
-                                RRR = RRR,
-                                # tmplen = tmplen,
-                                tmpAll = json.dumps(tmpAll)
-        )
 
 @app.route('/analysis')
 def analysis():
