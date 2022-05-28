@@ -12,12 +12,13 @@
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="widget">
-                <h4 class="text-capitalize mb-4">Choose variable</h4>
-                <p>HousePrice, Floor...</p>
+                
+                
 
 
                 {% if modinit == 0 %}
-
+                <h4 class="text-capitalize mb-4">Choose Analysis</h4>
+                <p></p>
                 <form method="post" action="/module" class="sub-form">
                 <select id="select1" name="mod" class="form-control mb-3" aria-label="Default select example" onchange="myFunction()">
                     <option value="0" selected>請選擇模型結果</option>
@@ -26,12 +27,13 @@
                 </select>
 
                 <select id="select2" name=district class="form-control mb-3" aria-label="Default select example">
+                    <option value="0">請選擇地區</option>
                     {% for col in district %}
-                    {% if col['id'] == 1 %}
-                    <option value="{{col['id']}}" selected>{{col['district']}}</option>
-                    {% else %}
+                    {# if col['id'] == 1 #}
+                    <!-- <option value="{{col['id']}}" selected>{{col['district']}}</option> -->
+                    {# else #}
                     <option value="{{col['id']}}">{{col['district']}}</option>
-                    {% endif %}
+                    {# endif #}
                     {% endfor %}
                 </select>
 
@@ -41,6 +43,7 @@
                 </form>
 
                 {% elif modinit == 1 %}
+                <h4 class="text-capitalize mb-4">Choose Analysis</h4>
 
                 <form method="post" action="/module" class="sub-form">
                     <select id="select1" name="mod" class="form-control mb-3" aria-label="Default select example"  onchange="myFunction()">
@@ -50,12 +53,13 @@
                     </select>
     
                     <select id="select2" name=district class="form-control mb-3" aria-label="Default select example">
+                        <option value="0">請選擇地區</option>
                         {% for col in district %}
-                        {% if col['id'] == 1 %}
-                        <option value="{{col['id']}}" selected>{{col['district']}}</option>
-                        {% else %}
+                        {# if col['id'] == 1 #}
+                        <!-- <option value="{{col['id']}}" selected>{{col['district']}}</option> -->
+                        {# else #}
                         <option value="{{col['id']}}">{{col['district']}}</option>
-                        {% endif %}
+                        {# endif #}
                         {% endfor %}
                     </select>
 
@@ -65,7 +69,7 @@
                     </form>
 
                 {% else %}
-
+                <h4 class="text-capitalize mb-4">Choose Analysis</h4>
                 <form method="post" action="/module" class="sub-form">
 
                     <select id="select1" name="mod" class="form-control mb-3" aria-label="Default select example"  onchange="myFunction2()">
@@ -75,12 +79,13 @@
                     </select>
 
                     <select id="select22" name=district class="form-control mb-3" aria-label="Default select example">
+                        <option value="0">請選擇地區</option>
                         {% for col in district %}
-                        {% if col['id'] == 1 %}
-                        <option value="{{col['id']}}" selected>{{col['district']}}</option>
-                        {% else %}
+                        {# if col['id'] == 1 #}
+                        <!-- <option value="{{selected_ID}}" selected>{{col['district']}}</option> -->
+                        {# else #}
                         <option value="{{col['id']}}">{{col['district']}}</option>
-                        {% endif %}
+                        {# endif #}
                         {% endfor %}
                     </select>
                     <!-- <input type="text" class="form-control mb-3" placeholder="Subscribe Now ..."> -->
@@ -123,6 +128,9 @@
 </div>
 
 <div id="map"></div>
+
+
+
 
 {% endblock main_wrapper %}
 
@@ -196,11 +204,22 @@
             var tmpMark = [tmpALL[i][0], tmpALL[i][1]]
 
             markers.addLayer(L.marker(tmpMark)
-            .bindPopup("地址 : " + tmpALL[i][2] + " <br> " + "總價 : " + tmpALL[i][3] + "萬")
+            .bindPopup(
+                "地址 : " + tmpALL[i][2] + " <br> " + 
+                //"總價 : " + tmpALL[i][3] + "萬 <br><br>"+  
+                //"預測價格 : " + tmpALL[i][4] + "萬 <br><br>" +
+                "坪數 : " + tmpALL[i][5] + "坪 <br>"+
+                "每坪價格 : " + tmpALL[i][3] + "萬 <br>" +
+                "預測每坪價格 : " + tmpALL[i][4] + "萬 <br>"
+                )
             )
         }
 
     }
+
+    
+
+
 
     function myFunction() {
         var x = document.getElementById("select1").value;

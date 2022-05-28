@@ -33,7 +33,7 @@ def module():
     # if request.method == "GET":
     connection = engine.connect()
 
-    cursor = connection.execute("select id,district from district_info;")
+    cursor = connection.execute("select id,district from district_info3 order by id;")
     result_district = cursor.fetchall()
 
     # cursor = connection.execute("select DISTINCT Htype from final;")
@@ -68,7 +68,7 @@ def module():
             connection = engine.connect()
 
             cursor = connection.execute(
-                f"select latitude,longitude,address,total_price from final2 where district_id = '{select_district}';"
+                f"select latitude,longitude,address,avg,avg_pred,size from final3 where district_id = '{select_district}';"
                 )
             getAll = cursor.fetchall()
 
@@ -79,6 +79,7 @@ def module():
             # tmplen = len(tmpAll)
 
             return render_template('module.html',
+                                    selected_ID = select_district,
                                     district=result_district,
                                     # htype=result_htype,
                                     RRR = RRR,
