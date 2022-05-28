@@ -47,7 +47,8 @@ def module():
                                 # htype=result_htype,
                                 RRR = RRR,
                                 modinit = 0,
-                                tmpAll = 0
+                                tmpAll = 0,
+                                tmpInfo_2021 = 0
                                 )
     elif request.method == "POST":
         RRR = 2
@@ -59,7 +60,18 @@ def module():
             return render_template('module.html', modinit = 0, RRR = 1, district=result_district, tmpAll = 0)
 
         elif select_mod == "1":
-            return render_template('module.html', modinit = 1, RRR = 1, district=result_district, tmpAll = 0)
+
+            connection = engine.connect()
+
+            cursor = connection.execute(
+                f"select * from district_info2 order by id;") # id | district | real_price | anal_price | diff 
+            info_2021 = cursor.fetchall()
+
+            connection.close()
+
+            tmpInfo_2021 = list(map(list,info_2021))
+
+            return render_template('module.html', modinit = 1, RRR = 3, district=result_district, tmpAll = 0, tmpInfo_2021 = tmpInfo_2021)
 
         elif select_mod == "2":
 
@@ -85,7 +97,8 @@ def module():
                                     RRR = RRR,
                                     # tmplen = tmplen,
                                     tmpAll = json.dumps(tmpAll),
-                                    modinit = 2
+                                    modinit = 2,
+                                    tmpInfo_2021 = 0
             )
 
 @app.route('/analysis')
@@ -100,6 +113,13 @@ def analysis_history():
 def contact():
     return render_template('contact.html')
 
+@app.route('/returnjson', methods=['GET'])
+def ReturnJSON():
+    if (request.method == 'GET'):
+        SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+        json_url = os.path.join(SITE_ROOT, "./static/towns", "two_towns_all.json")
+        data = json.load(open(json_url, encoding="utf-8"))
+        return jsonify(data)
 
 if __name__ == "__main__":
     app.run(ssl_context='adhoc',host='0.0.0.0',debug=True, port='7777')
