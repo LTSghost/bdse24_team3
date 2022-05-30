@@ -57,7 +57,7 @@ def module():
 
 
         if select_mod == "0":
-            return render_template('module.html', modinit = 0, RRR = 1, district=result_district, tmpAll = 0)
+            return render_template('module.html', modinit = 0, RRR = 1, district=result_district, tmpAll = 0, tmpInfo_2021 = 0)
 
         elif select_mod == "1":
 
