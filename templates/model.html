@@ -19,7 +19,7 @@
                 {% if modinit == 0 %}
                 <h4 class="text-capitalize mb-4">Choose Analysis</h4>
                 <p></p>
-                <form method="post" action="/module" class="sub-form">
+                <form method="post" action="/model" class="sub-form">
                 <select id="select1" name="mod" class="form-control mb-3" aria-label="Default select example" onchange="myFunction()">
                     <option value="0" selected>請選擇模型結果</option>
                     <option value="1" >2021雙北行政區預測分析</option>
@@ -45,7 +45,7 @@
                 {% elif modinit == 1 %}
                 <h4 class="text-capitalize mb-4">Choose Analysis</h4>
 
-                <form method="post" action="/module" class="sub-form">
+                <form method="post" action="/model" class="sub-form">
                     <select id="select1" name="mod" class="form-control mb-3" aria-label="Default select example"  onchange="myFunction()">
                         <option value="0" >請選擇模型結果</option>
                         <option value="1" selected>2021雙北行政區預測分析</option>
@@ -70,7 +70,7 @@
 
                 {% else %}
                 <h4 class="text-capitalize mb-4">Choose Analysis</h4>
-                <form method="post" action="/module" class="sub-form">
+                <form method="post" action="/model" class="sub-form">
 
                     <select id="select1" name="mod" class="form-control mb-3" aria-label="Default select example"  onchange="myFunction2()">
                         <option value="0" >請選擇模型結果</option>
@@ -97,7 +97,7 @@
 
                 
 
-                <!-- <form method="post" action="/module" class="sub-form">
+                <!-- <form method="post" action="/model" class="sub-form">
 
                     <select name="year" class="form-control mb-3" aria-label="Default select example">
                         <option value="2021" >2021</option>
@@ -332,6 +332,17 @@
 
 <script type="text/javascript">
     
+
+    var redIcon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+      });
+
+
     var map = L.map('map', {
         center: [25.029764687428475, 121.6012807284144],
         zoom: 9.5
@@ -373,7 +384,7 @@
 
             var tmpMark = [tmpALL[i][0], tmpALL[i][1]]
 
-            markers.addLayer(L.marker(tmpMark)
+            markers.addLayer(L.marker(tmpMark, {icon: redIcon})
             .bindPopup(
                 "地址 : " + tmpALL[i][2] + " <br> " + 
                 //"總價 : " + tmpALL[i][3] + "萬 <br><br>"+  

@@ -28,8 +28,8 @@ def index():
     return render_template('index.html',
                            current_time=datetime.utcnow())
 
-@app.route('/module', methods=['GET','POST'])
-def module():
+@app.route('/model', methods=['GET','POST'])
+def model():
     # if request.method == "GET":
     connection = engine.connect()
 
@@ -42,7 +42,7 @@ def module():
     connection.close()
     if request.method == "GET":
         RRR = 1
-        return render_template('module.html',
+        return render_template('model.html',
                                 district=result_district,
                                 # htype=result_htype,
                                 RRR = RRR,
@@ -57,7 +57,7 @@ def module():
 
 
         if select_mod == "0":
-            return render_template('module.html', modinit = 0, RRR = 1, district=result_district, tmpAll = 0, tmpInfo_2021 = 0)
+            return render_template('model.html', modinit = 0, RRR = 1, district=result_district, tmpAll = 0, tmpInfo_2021 = 0)
 
         elif select_mod == "1":
 
@@ -71,7 +71,7 @@ def module():
 
             tmpInfo_2021 = list(map(list,info_2021))
 
-            return render_template('module.html', modinit = 1, RRR = 3, district=result_district, tmpAll = 0, tmpInfo_2021 = tmpInfo_2021)
+            return render_template('model.html', modinit = 1, RRR = 3, district=result_district, tmpAll = 0, tmpInfo_2021 = tmpInfo_2021)
 
         elif select_mod == "2":
 
@@ -90,7 +90,7 @@ def module():
 
             # tmplen = len(tmpAll)
 
-            return render_template('module.html',
+            return render_template('model.html',
                                     selected_ID = select_district,
                                     district=result_district,
                                     # htype=result_htype,
